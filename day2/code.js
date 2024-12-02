@@ -66,18 +66,8 @@ for (let i=0; i<narray.length;i++){
   //  console.log(narray[i][l],narray[i][l+1])
 
     if (posit&&length<0){
-      console.log("- on +")
-      console.log("fall",narray[i],narray[i][l],narray[i][l+1],length)
       let arrayToString = narray[i].join(' ');
       var wrongString = arrayToString
-      wrongString+="\n"
-      wrongString+="- on +"
-      wrongString+="  "
-      wrongString+=narray[i][l]
-      wrongString+="  "
-      wrongString+=narray[i][l+1]
-      wrongString+="  "
-      wrongString+=length
       wrongString+="\n"
       fs.appendFile('wrong.txt', wrongString, (err) => {
           // In case of a error throw err.
@@ -87,18 +77,8 @@ for (let i=0; i<narray.length;i++){
       break;
     }
     else if (posit===false&&length>0){
-      console.log("+ on -")
-      console.log("fall",narray[i],narray[i][l],narray[i][l+1],length)
       let arrayToString = narray[i].join(' ');
       var wrongString = arrayToString
-      wrongString+="\n"
-      wrongString+="+ on -"
-      wrongString+="  "
-      wrongString+=narray[i][l]
-      wrongString+="  "
-      wrongString+=narray[i][l+1]
-      wrongString+="  "
-      wrongString+=length
       wrongString+="\n"
       fs.appendFile('wrong.txt', wrongString, (err) => {
           // In case of a error throw err.
@@ -115,16 +95,8 @@ for (let i=0; i<narray.length;i++){
    }
 
     if (length>3||length==0){
-      console.log(">3 / 0")
-      console.log("fall",narray[i],narray[i][l],narray[i][l+1],length)
       let arrayToString = narray[i].join(' ');
       var wrongString = arrayToString
-      wrongString+="  "
-      wrongString+=narray[i][l]
-      wrongString+="  "
-      wrongString+=narray[i][l+1]
-      wrongString+="  "
-      wrongString+=length
       wrongString+="\n"
       fs.appendFile('wrong.txt', wrongString, (err) => {
           // In case of a error throw err.
