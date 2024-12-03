@@ -15,9 +15,16 @@ var narray = []
 array.pop()
 
 var narray = []
+var freePass= true;
 
-function passFail(){
-
+function passFail(pass,freePass,i,narrayi,l){
+  let arrayToString = narray[i].join(' ');
+  var wrongString = arrayToString;
+  wrongString+="\n";
+  fs.appendFile('wrong.txt', wrongString, (err) => {
+      if (err) throw err;
+  })
+  l-=1
 }
 
 for (let i=0; i<array.length;i++){
@@ -48,6 +55,7 @@ for (let i=0; i<narray.length;i++){
   }
   else{
     console.log("even",narray[i]);
+    passFail(pass,freePass,i,narray[i]);
     pass=false;
     continue;
   }
@@ -58,22 +66,12 @@ for (let i=0; i<narray.length;i++){
   //  console.log(narray[i][l],narray[i][l+1])
 
     if (posit&&length<0){
-      let arrayToString = narray[i].join(' ');
-      var wrongString = arrayToString;
-      wrongString+="\n";
-      fs.appendFile('wrong.txt', wrongString, (err) => {
-          if (err) throw err;
-      })
-      pass = false;
+      passFail(pass,freePass,i,narray[i],l);
+      pass=false;
       break;
     }
     else if (posit===false&&length>0){
-      let arrayToString = narray[i].join(' ');
-      var wrongString = arrayToString;
-      wrongString+="\n"
-      fs.appendFile('wrong.txt', wrongString, (err) => {
-          if (err) throw err;
-      })
+      passFail(pass,freePass,i,narray[i],l);
       pass = false;
       break;
     }
@@ -85,18 +83,12 @@ for (let i=0; i<narray.length;i++){
    }
 
     if (length>3||length==0){
-      let arrayToString = narray[i].join(' ');
-      var wrongString = arrayToString
-      wrongString+="\n"
-      fs.appendFile('wrong.txt', wrongString, (err) => {
-          // In case of a error throw err.
-          if (err) throw err;
-      })
-      l=narray.length
+      passFail(pass,freePass,i,narray[i],l);
       pass = false;
       break 
     }
   }
+
   if(pass){
     let arrayToString = narray[i].join(' ');
     arrayToString+="\n"
