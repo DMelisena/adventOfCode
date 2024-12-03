@@ -23,8 +23,11 @@ function passFail(pass,freePass,i,narrayi,l){
   wrongString+="\n";
   fs.appendFileSync('wrong.txt', wrongString)
   pass = false;
-  freePass = true;
-  return [pass,freePass]
+  // TODO:if the array got free pass
+  // if it's still on i? if its already on l?
+  // if on i delete the the narrayi[1]
+  //
+  return [pass,freePass,i,l]
 }
 
 for (let i=0; i<array.length;i++){
@@ -55,7 +58,7 @@ for (let i=0; i<narray.length;i++){
   }
   else{
     // console.log("even",narray[i]);
-    [pass,freePass] = passFail(pass,freePass,i,narray[i]);
+    [pass,freePass,i] = passFail(pass,freePass,i,narray[i]);
     continue;
   }
 
@@ -65,11 +68,11 @@ for (let i=0; i<narray.length;i++){
   //  console.log(narray[i][l],narray[i][l+1])
 
     if (posit&&length<0){
-      [pass,freePass] = passFail(pass,freePass,i,narray[i],l);
+      [pass,freePass, i, l] = passFail(pass,freePass,i,narray[i],l);
       break;
     }
     else if (posit===false&&length>0){
-      [pass,freePass] = passFail(pass,freePass,i,narray[i],l);
+      [pass,freePass, i, l] = passFail(pass,freePass,i,narray[i],l);
       break;
     }
 
@@ -80,7 +83,7 @@ for (let i=0; i<narray.length;i++){
    }
 
     if (length>3||length==0){
-      [pass,freePass] = passFail(pass,freePass,i,narray[i],l);
+      [pass,freePass, i, l] = passFail(pass,freePass,i,narray[i],l);
       break 
     }
   }
