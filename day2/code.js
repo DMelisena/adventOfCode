@@ -23,7 +23,8 @@ function passFail(pass,freePass,i,narrayi,l){
   wrongString+="\n";
   fs.appendFileSync('wrong.txt', wrongString)
   pass = false;
-  return pass
+  freePass = true;
+  return [pass,freePass]
 }
 
 for (let i=0; i<array.length;i++){
@@ -54,7 +55,7 @@ for (let i=0; i<narray.length;i++){
   }
   else{
     // console.log("even",narray[i]);
-    pass = passFail(pass,freePass,i,narray[i]);
+    [pass,freePass] = passFail(pass,freePass,i,narray[i]);
     continue;
   }
 
@@ -64,11 +65,11 @@ for (let i=0; i<narray.length;i++){
   //  console.log(narray[i][l],narray[i][l+1])
 
     if (posit&&length<0){
-      pass = passFail(pass,freePass,i,narray[i],l);
+      [pass,freePass] = passFail(pass,freePass,i,narray[i],l);
       break;
     }
     else if (posit===false&&length>0){
-      pass = passFail(pass,freePass,i,narray[i],l);
+      [pass,freePass] = passFail(pass,freePass,i,narray[i],l);
       break;
     }
 
@@ -79,7 +80,7 @@ for (let i=0; i<narray.length;i++){
    }
 
     if (length>3||length==0){
-      pass = passFail(pass,freePass,i,narray[i],l);
+      [pass,freePass] = passFail(pass,freePass,i,narray[i],l);
       break 
     }
   }
