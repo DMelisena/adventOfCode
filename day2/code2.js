@@ -42,3 +42,22 @@ for (let i=0; i<rawArray.length;i++){
 //initial parameter{{{
 var num=0
 //}}}
+
+var positive = true;
+for (let i = 0; i<array.length; i++){
+  // console.log(array[i]);
+  let distance=array[i][1]-array[i][0]
+  if(distance>0){
+    positive = true;
+    num++
+  }
+  else if(distance<0){
+    positive = false;
+    num++
+  }
+  else{
+    continue;
+  }
+  // console.log(positive,distance,array[i][0],array[i][1])
+ 
+}
