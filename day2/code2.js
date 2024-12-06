@@ -9,6 +9,10 @@ fs.writeFile('passed2.txt', data, (err) => {
 fs.writeFile('wrong2.txt', data, (err) => {
     if (err) throw err;
 })
+
+fs.writeFile('failed.txt', data, (err) => {
+    if (err) throw err;
+})
 // }}}
 
 //write on file{{{
@@ -42,10 +46,16 @@ let freePass = true;
 
 //}}}
 
+
+//NOTE: How to create freepass so that when it's activated, it would turn false
+//But when it's false it if it's wrong again it skipped, but if it's right it ended up passing
+//FIX: it's looping inside of even distance on first 2 number
+//
 let positive = true;
 for (let i = 0; i<array.length; i++){
   // console.log(array[i]);
   let distance=array[i][1]-array[i][0]
+  // console.log("freepass",freePass)
   if(distance>0){
     positive = true;
   }
@@ -53,9 +63,10 @@ for (let i = 0; i<array.length; i++){
     positive = false;
   }
   else{
+    winNote('failed.txt',array[i]);
     continue;
   }
-  console.log(positive,distance,array[i][0],array[i][1],array[i],array[i].length)
+  // console.log(positive,distance,array[i][0],array[i][1],array[i],array[i].length)
 
   for (let l=0; l<array[i].length-1;l++){
     distance=array[i][l+1]-array[i][l];
@@ -66,14 +77,20 @@ for (let i = 0; i<array.length; i++){
       distance =-distance;
     }
     else{
+      freePass = true;
+      winNote('failed.txt',array[i]);
       break;
     }
 
     if(l===array[i].length-2){
-      console.log('finished',l)
+      console.log('finished',i,array[i],l);
       winNote('passed2.txt',array[i]);
-      num++
+      num++;
+      // console.log("freepass turned true");
+      // console.log("retruefree",freePass)
     }
   }
 }
+
 console.log(num)
+
