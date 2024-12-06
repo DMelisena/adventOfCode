@@ -39,6 +39,7 @@ let positive = true;
 let done = false;
 
 for(let i=0;i<array.length;i++){
+  done=false;
   for(let l=0; l<array[i].length;l++){
     if (done===true){
       done = false;
