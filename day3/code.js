@@ -21,7 +21,7 @@ for (let i=0; i<array.length;i++){
   let newInputs=[]
   let firstInput=false;
 
-  if(array[i]=='m'){
+  if(array[i]=='m'&&enable){
     if(array[i+1]=='u'){
       if(array[i+2]=='l'){
         if(array[i+3]=='('){
@@ -44,7 +44,6 @@ for (let i=0; i<array.length;i++){
               break
             }
             else{
-              console.log("Test")
               string+=array[l]
             }
             if(string.length>3){
@@ -56,16 +55,28 @@ for (let i=0; i<array.length;i++){
       }
     }
   }
-
+  else if(array[i]=='d'&&array[i+1]=='o'){
+    for(let l=i; l<i+5; l++){
+      string+=array[l]
+    }
+    if(array[i+2]=='('&&array[i+3]==')'){
+      enable=true;
+      console.log("\nDODODOODOOD",string)
+    }
+    else if(array[i+2]=='n'&&array[i+3]=="'"&&array[i+4]=='t'&&array[i+5]=='('&&array[i+6]==')'){
+      enable=false;
+      console.log("\nDONT DONT DONT",string)
+    }
+  }
 }
 
 let num=0
 for (let i = 0;i<inputs.length;i++){
   if(i===744){
-    console.log(inputs[i])
+    // console.log(inputs[i])
   }
   else{
-    console.log('inputs',i,inputs[i][0],inputs[i][1],inputs[i][0]*inputs[i][1])
+    // console.log('inputs',i,inputs[i][0],inputs[i][1],inputs[i][0]*inputs[i][1])
   }
   num+=(inputs[i][0]*inputs[i][1])
 }
