@@ -23,24 +23,12 @@ console.log(array.length)
 console.log(array[0].length)
 
 let leftRight=[]
-let rightLeft=[]
 let upDown=[]
-let bottomUp=[]
 
 let posDiagonal=[]
-let posDiagonalRL=[]
 let negDiagonal=[]
-let negDiagonalLR=[]
 
 let line=''
-
-for(let i=0; i<array.length; i++){
-  line=''
-  for(let l=array[0].length-1; l>=0; l-=1){
-    line+=array[i][l];
-  }
-  rightLeft.push(line)
-}
 
 for(let i=0; i<array.length; i++){
   line=''
@@ -51,7 +39,6 @@ for(let i=0; i<array.length; i++){
 }
 
 console.log("left",leftRight)
-console.log("right",rightLeft)
 
 for(let i=0; i<array.length; i++){
   line=''
@@ -61,16 +48,8 @@ for(let i=0; i<array.length; i++){
   upDown.push(line)
 }
 
-for(let i=0; i<array.length; i++){
-  line=''
-  for(let l=array.length-1; l>=0; l-=1){
-    line+=array[l][i];
-  }
-  bottomUp.push(line)
-}
 
 console.log("updown",upDown)
-console.log("bottomUp",bottomUp)
 
 for (let i=array.length-1;i>=0;i-=1){
   line=''
@@ -121,6 +100,8 @@ for (let i=0; i<array.length; i++){
   }
 }
 
+posDiagonal.pop()
+
 console.log("posDiagonal",posDiagonal)
 for (let l=0; l<array[0].length; l++){
   line = '';
@@ -140,51 +121,33 @@ for (let l=0; l<array[0].length; l++){
 
 console.log("posDiagonal",posDiagonal)
 
-for(let i=0; i<negDiagonal.length; i++){
-  line=''
-  line = negDiagonal[i].split('').reverse().join('');
-  negDiagonalLR.push(line);
-}
-for(let i=0; i<posDiagonal.length; i++){
-  line=''
-  line = posDiagonal[i].split('').reverse().join('');
-  posDiagonalRL.push(line);
-}
-
-// console.log("posDiagonalRL",posDiagonalRL)
-
 let num = 0;
 
-function readXMAS(array){
+function readXMAS(array,num){
   let old = num;
   for(let i=0; i<array.length; i++){
+    console.log(array[i])
     for(let l=0; l<array.length; l++){
       if(array[i][l]=='X' && array[i][l+1]=='M' && array[i][l+2]=='A' && array[i][l+3]=='S'){
+        num++
+      }
+      else if(array[i][l]=='S' && array[i][l+1]=='A' && array[i][l+2]=='M' && array[i][l+3]=='X'){
         num++
       }
     }
   }
   console.log(old, num)
+  return num
 }
 
-
-
 console.log("leftRight",leftRight)
-console.log("rightLeft", rightLeft)
 console.log("upDown",upDown)
-console.log("bottomUp",bottomUp)
 console.log("negDiagonal",negDiagonal)
-console.log("negDiagonalLR",negDiagonalLR)
 console.log("posDiagonal",posDiagonal)
-console.log("posDiagonalRL",posDiagonalRL)
 
-readXMAS(leftRight)
-readXMAS(rightLeft)
-readXMAS(upDown)
-readXMAS(bottomUp)
-readXMAS(negDiagonal)
-readXMAS(negDiagonalLR)
-readXMAS(posDiagonalRL)
-readXMAS(posDiagonal)
+num = readXMAS(leftRight,num)
+num = readXMAS(upDown,num)
+num = readXMAS(negDiagonal,num)
+num = readXMAS(posDiagonal,num)
 
 console.log(num)
